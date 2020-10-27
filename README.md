@@ -1,12 +1,10 @@
-# vuejs-logger
+# vuejs3-logger
 
-> ![](https://travis-ci.org/justinkames/vuejs-logger.svg?branch=master)
-    [![codecov](https://codecov.io/gh/justinkames/vuejs-logger/branch/master/graph/badge.svg)](https://codecov.io/gh/justinkames/vuejs-logger)
-    [![npm](https://img.shields.io/npm/dt/vuejs-logger.svg)](https://www.npmjs.com/package/vuejs-logger)
-    [![npm](https://img.shields.io/npm/dw/vuejs-logger.svg)](https://www.npmjs.com/package/vuejs-logger)
-    [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/justinkames/vuejs-logger/master/LICENSE)
+>   [![npm](https://img.shields.io/npm/dt/vuejs3-logger.svg)](https://www.npmjs.com/package/vuejs3-logger)
+    [![npm](https://img.shields.io/npm/dw/vuejs3-logger.svg)](https://www.npmjs.com/package/vuejs3-logger)
+    [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/MarcSchaetz/vuejs3-logger/master/LICENSE)
 
-> Provides customizable logging functionality for Vue.js. Compatible with Vue2.
+> Provides customizable logging functionality for Vue.js. Compatible with Vue3.
 
 ## Table of Contents
 
@@ -21,13 +19,11 @@
 - [Contribute](#contribute)
 - [License](#license)
 
-## Demo
-
-@ [https://codepen.io/justinkames/pen/BwGOVQ](https://codepen.io/justinkames/pen/BwGOVQ)
-
 ## Introduction 
 
-vuejs-logger is a tool that enables configurable logging for Vue applications. Features include :
+vuejs3-logger is a fork of the great [vuejs-logger](https://github.com/justinkames/vuejs-logger) which is availabe for Vue.js 2. However vuejs-logger currently lacks support for Vue.js 3. The features of this library are exactly the same as the current vuejs-logger version 1.5.4.
+
+Features include :
 
 - Output restriction based on selected loglevel.
 - Automatically JSON.stringify() the (reactive) properties passed to the logger.
@@ -43,10 +39,10 @@ logLevels :  ['debug', 'info', 'warn', 'error', 'fatal']
 
 This project uses [node](http://nodejs.org) and [npm](https://npmjs.com). 
 
-https://www.npmjs.com/package/vuejs-logger
+https://www.npmjs.com/package/vuejs3-logger
 
 ```sh
-$ npm install vuejs-logger --save-exact
+$ npm install vuejs3-logger --save-exact
 ```
 
 ## Usage
@@ -68,7 +64,9 @@ Below you can find an example of how to use vuejs-logger :
 #### Code example
 
 ```js
-import VueLogger from 'vuejs-logger';
+import VueLogger from 'vuejs3-logger';
+import { createApp } from 'vue';
+
 const isProduction = process.env.NODE_ENV === 'production';
  
 const options = {
@@ -81,11 +79,11 @@ const options = {
     showConsoleColors: true
 };
 
-Vue.use(VueLogger, options);
+createApp({}).use(VueLogger, options);
 ```
 
 ```js
-new Vue({
+defineComponent({
     data() {
         return {
             a : 'a',
@@ -104,7 +102,8 @@ new Vue({
 
 function externalFunction() {
    // log from external function
-   Vue.$log.debug('log from function outside component.');
+   const logger = inject('vuejs3-logger');
+   logger.debug('log from function outside component.');
 }
 ```
 
@@ -131,14 +130,13 @@ ignore all calls with less important loglevels in the code.
 
 ## Maintainers
 
-[@justinkames](https://github.com/justinkames).
+[@MarcSchaetz](https://github.com/MarcSchaetz).
 
 ## Contribute
 
 Feel free to dive in! [Open an issue](https://github.com/justinkames/vuejs-logger/issues/new) or submit PRs.
 
-vuejs-logger follows the [Contributor Covenant](http://contributor-covenant.org/version/1/3/0/) Code of Conduct.
 
 ## License
 
-[MIT](LICENSE) © Justin Kames
+[MIT](LICENSE) © Marc Schätz
