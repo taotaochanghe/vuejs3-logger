@@ -1,4 +1,4 @@
-import {strict, strictEqual} from "assert";
+import {strictEqual} from "assert";
 import VueLogger from "../src/index";
 import {LogLevels} from "../src/enum/log-levels";
 

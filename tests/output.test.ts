@@ -1,12 +1,14 @@
 import chai from "chai";
-import Vue from "vue/dist/vue.min";
+import { createApp, defineComponent } from "vue";
+import { LogLevels } from "../src/enum/log-levels";
 import VueLogger from "../src/index";
-import {LogLevels} from "../src/enum/log-levels";
-import {ILoggerOptions} from "../src/interfaces/logger-options";
+import { ILoggerOptions } from "../src/interfaces/logger-options";
 
 const expect = chai.expect;
 
 describe("output", () => {
+
+    // TODO(MarcSchaetz): Test failes because mount failes. Must be evaluated, how to correctly mount.
     test("Should instantiate log functions and be reachable from external functions.", (done) => {
         const options = {
             isEnabled: true,
@@ -18,9 +20,10 @@ describe("output", () => {
             showConsoleColors: false,
         } as ILoggerOptions;
 
-        Vue.use(VueLogger, options);
-        const App = new Vue({
-            created() {
+        
+        const root = defineComponent({
+            template: '<div id="app"></div>',
+            mounted() {
                 this.foo();
                 done();
             },
@@ -36,6 +39,10 @@ describe("output", () => {
             },
         });
 
+        const app = createApp(root);
+        const Vue = app.use(VueLogger, options).config.globalProperties;
+        app.mount('#app');
+        
         function externalFunction(): void {
             expect(Vue.$log.fatal("test")).to.exist;
             expect(Vue.$log.fatal("test")).to.contains("externalFunction");

@@ -1,13 +1,18 @@
-import {notStrictEqual, strictEqual} from "assert";
+import { strictEqual } from "assert";
 import chai from "chai";
-import Vue from "vue/dist/vue.min";
+import { createApp } from "vue";
 import VueLogger from "../src/index";
-import {LogLevels} from "../src/enum/log-levels";
-import {ILoggerOptions} from "../src/interfaces/logger-options";
+import { LogLevels } from "../src/enum/log-levels";
+import { ILoggerOptions } from "../src/interfaces/logger-options";
 const expect = chai.expect;
 
 describe("vue-logger.ts", () => {
 
+    let app;
+
+    beforeAll(() => {
+        app = createApp({});
+    })
     test("install() should work as expected with the correct params.", () => {
         const options: ILoggerOptions = {
             isEnabled: true,
@@ -18,7 +23,7 @@ describe("vue-logger.ts", () => {
             showLogLevel: false,
             showMethodName: false,
         };
-        Vue.use(VueLogger, options);
+        const Vue = app.use(VueLogger, options).config.globalProperties;
         expect(Vue.$log).to.be.a("object");
         strictEqual(Vue.$log.debug("debug"), undefined);
         strictEqual(Vue.$log.info("info"), undefined);
@@ -38,7 +43,7 @@ describe("vue-logger.ts", () => {
             showMethodName: "wrong value for test.",
         };
         expect(() => {
-            VueLogger.install(Vue, options);
+            VueLogger.install(app, options);
         })
             .to
             .throw(Error, "Provided options for vuejs-logger are not valid.");

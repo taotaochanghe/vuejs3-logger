@@ -1,8 +1,7 @@
 /**
  * Augment the typings of Vue.js
  */
-import Vue = require('vue');
-
+import vue from '@vue/runtime-core';
 import * as VueLogger from '../../index';
 
 export interface Log {
@@ -17,8 +16,9 @@ export interface Log {
     fatal(...args: any[]): void;
 }
 
-declare module 'vue/types/vue' {
-    interface Vue {
+
+declare module '@vue/runtime-core' {
+    export interface ComponentCustomProperties {
         $log: Log;
     }
 }
