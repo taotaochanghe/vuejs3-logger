@@ -8,7 +8,6 @@
 
 ## Table of Contents
 
-- [Demo](#demo)
 - [Introduction](#introduction)
 - [Install](#install)
 - [Usage](#usage)
