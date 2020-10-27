@@ -2,8 +2,8 @@
   "name": "vuejs3-logger",
   "license": "MIT",
   "author": "Marc Schätz",
-  "description": "vuejs3-logger, provides customizable logging functionality for Vue.js3. Forked from the gread vuejs-logger library (https://github.com/justinkames/vuejs-logger)",
-  "version": "1.0.0-beta2",
+  "description": "vuejs3-logger, provides customizable logging functionality for Vue.js3. Forked from the great vuejs-logger library (https://github.com/justinkames/vuejs-logger)",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/MarcSchaetz/vuejs3-logger.git"
