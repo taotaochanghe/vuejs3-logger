@@ -2,7 +2,7 @@
  * Augment the typings of Vue.js
  */
 import vue from '@vue/runtime-core';
-import * as VueLogger from '../../index';
+import VueLogger from '../../index';
 
 export interface Log {
     debug(...args: any[]): void;
