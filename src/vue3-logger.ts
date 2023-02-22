@@ -12,7 +12,7 @@ class VueLogger implements ILogger {
 
         if (this.isValidOptions(options, this.logLevels)) {
             Vue.$log = this.initLoggerInstance(options, this.logLevels);
-            Vue.provide('vuejs3-logger', Vue.$log);
+            Vue.provide("vuejs3-logger", Vue.$log);
             Vue.config.globalProperties.$log = Vue.$log;
         } else {
             throw new Error(this.errorMessage);
@@ -43,7 +43,6 @@ class VueLogger implements ILogger {
 
     private getMethodName(): string {
         let error = {} as any;
-
         try {
             throw new Error("");
         } catch (e) {
@@ -53,12 +52,14 @@ class VueLogger implements ILogger {
         if (error.stack === undefined) {
             return "";
         }
+
         let stackTrace = error.stack.split("\n")[3];
         if (/ /.test(stackTrace)) {
             stackTrace = stackTrace.trim().split(" ")[1];
         }
-        if (stackTrace && stackTrace.indexOf(".") > -1) {
-            stackTrace = stackTrace.split(".")[1];
+        if (stackTrace && stackTrace.indexOf("/") > -1) {
+            // find the last slash content
+            stackTrace = stackTrace.split("/")[stackTrace.split("/").length - 1];
         }
         return stackTrace;
     }

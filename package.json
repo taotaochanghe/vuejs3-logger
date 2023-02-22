@@ -25,11 +25,13 @@
     "eslint": "^7.12.1",
     "jest": "25.1.0",
     "ts-jest": "25.1.0",
-    "typescript": "3.7.5"
+    "typescript": "4.8.2"
   },
   "dependencies": {
-    "vue": "^3.0.0",
-    "es6-object-assign": "1.1.0"
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "es6-object-assign": "1.1.0",
+    "eslint-plugin-vue": "^9.9.0",
+    "vue": "^3.0.0"
   },
   "typings": "dist/lib/types/index.d.ts"
 }

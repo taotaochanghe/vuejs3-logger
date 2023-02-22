@@ -18,7 +18,7 @@
         ],
         "quotes": [
             "warn",
-            "single",
+            "double",
             { "allowTemplateLiterals": true }
         ]
     }

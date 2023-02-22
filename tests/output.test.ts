@@ -20,9 +20,9 @@ describe("output", () => {
             showConsoleColors: false,
         } as ILoggerOptions;
 
-        
+
         const root = defineComponent({
-            template: '<div id="app"></div>',
+            template: "<div id=\"app\"></div>",
             mounted() {
                 this.foo();
                 done();
@@ -41,8 +41,8 @@ describe("output", () => {
 
         const app = createApp(root);
         const Vue = app.use(VueLogger, options).config.globalProperties;
-        app.mount('#app');
-        
+        app.mount("#app");
+
         function externalFunction(): void {
             expect(Vue.$log.fatal("test")).to.exist;
             expect(Vue.$log.fatal("test")).to.contains("externalFunction");
